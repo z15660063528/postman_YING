@@ -1,0 +1,372 @@
+{
+	"info": {
+		"_postman_id": "fe10f786-723b-44ee-a8f1-03f636d50701",
+		"name": "影讯API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "有效",
+			"item": [
+				{
+					"name": "今日放映影片",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"//断言：判断实际值是否和预期值一样\r",
+									"//判断状态码\r",
+									"// pm.test(\"Status code is 200\", function () {\r",
+									"//     pm.response.to.have.status(200);\r",
+									"// });\r",
+									"\r",
+									"// 判断是否包含指定字符\r",
+									"// pm.test(\"Your test name\", function () {\r",
+									"//     var jsonData = pm.response.json();\r",
+									"//     pm.expect(jsonData.value).to.eql(100);\r",
+									"// });\r",
+									"// pm.test(\"Body matches string\", function () {\r",
+									"//     pm.expect(pm.response.text()).to.not.include(\"沐浴之王\");\r",
+									"//     pm.expect(pm.response.text()).to.not.include(\"师傅\");\r",
+									"// });\r",
+									"//只能用于结果为json格式的数据\r",
+									"//判断json字符串中某一个键的值是否等于预期结果\r",
+									"pm.test(\"断言成功返回的内容\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData['result']).to.not.eql('英语');\r",
+									"    pm.expect(jsonData.result).to.not.eql('功夫熊猫');\r",
+									"});\r",
+									"//响应结果只能是字符串的时候使用\r",
+									"//用来判断结果是不是字符串类型\r",
+									"// pm.test(\"Body is correct\", function () {\r",
+									"//     pm.response.to.have.body(\"填预期结果，是完全匹配模式，必须和结果一模一样\");\r",
+									"// });\r",
+									"\r",
+									"// 判断响应头部域是否包含预期的头部字段\r",
+									"// pm.test(\"Content-Type is present\", function () {\r",
+									"//     pm.response.to.have.header(\"写需要结果带有的字段\");\r",
+									"// });\r",
+									"\r",
+									"// 判断响应时间是否小于预期结果，单位是ms\r",
+									"// pm.test(\"Response time is less than 200ms\", function () {\r",
+									"//     pm.expect(pm.response.responseTime).to.be.below('写预期响应时间');\r",
+									"// });\r",
+									"\r",
+									"// 判断响应状态码是否是预期结果中的一个\r",
+									"// pm.test(\"Successful POST request\", function () {\r",
+									"//     pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"// });\r",
+									"\r",
+									"// 判断状态码的解释是否符合预期结果\r",
+									"// pm.test(\"Status code name has string\", function () {\r",
+									"//     pm.response.to.have.status(\"OK\");\r",
+									"// });\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "zh-CN,zh;q=0.9,en;q=0.8,en-US;q=0.7,zh-TW;q=0.6",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://v.juhe.cn/movie/movies.today?cityid=11&key={{key}}",
+							"protocol": "http",
+							"host": [
+								"v",
+								"juhe",
+								"cn"
+							],
+							"path": [
+								"movie",
+								"movies.today"
+							],
+							"query": [
+								{
+									"key": "cityid",
+									"value": "11"
+								},
+								{
+									"key": "key",
+									"value": "{{key}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询影片信息",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"//断言：判断实际值是否和预期值一样\r",
+									"//判断状态码\r",
+									"// pm.test(\"Status code is 200\", function () {\r",
+									"//     pm.response.to.have.status(200);\r",
+									"// });\r",
+									"\r",
+									"//判断是否包含指定字符\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"错误\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"null\");\r",
+									"//     pm.response.to.have.status(200);\r",
+									"});\r",
+									"//只能用于结果为json格式的数据\r",
+									"//判断json字符串中某一个键的值是否等于预期结果\r",
+									"// pm.test(\"断言成功返回的内容\", function () {\r",
+									"//     var jsonData = pm.response.json();\r",
+									"//     pm.expect(jsonData['result'][0][\"language\"]).to.eql('英语');\r",
+									"//     pm.expect(jsonData.result[0].title).to.eql('功夫熊猫');\r",
+									"// });\r",
+									"//响应结果只能是字符串的时候使用\r",
+									"//用来判断结果是不是字符串类型\r",
+									"// pm.test(\"Body is correct\", function () {\r",
+									"//     pm.response.to.have.body(\"填预期结果，是完全匹配模式，必须和结果一模一样\");\r",
+									"// });\r",
+									"\r",
+									"// 判断响应头部域是否包含预期的头部字段\r",
+									"// pm.test(\"Content-Type is present\", function () {\r",
+									"//     pm.response.to.have.header(\"写需要结果带有的字段\");\r",
+									"// });\r",
+									"\r",
+									"// 判断响应时间是否小于预期结果，单位是ms\r",
+									"// pm.test(\"Response time is less than 200ms\", function () {\r",
+									"//     pm.expect(pm.response.responseTime).to.be.below('写预期响应时间');\r",
+									"// });\r",
+									"\r",
+									"// 判断响应状态码是否是预期结果中的一个\r",
+									"// pm.test(\"Successful POST request\", function () {\r",
+									"//     pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"// });\r",
+									"\r",
+									"// 判断状态码的解释是否符合预期结果\r",
+									"// pm.test(\"Status code name has string\", function () {\r",
+									"//     pm.response.to.have.status(\"OK\");\r",
+									"// });\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "zh-CN,zh;q=0.9,en;q=0.8,en-US;q=0.7,zh-TW;q=0.6",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://v.juhe.cn/movie/query?movieId={{youxiao}}&key={{key}}",
+							"protocol": "http",
+							"host": [
+								"v",
+								"juhe",
+								"cn"
+							],
+							"path": [
+								"movie",
+								"query"
+							],
+							"query": [
+								{
+									"key": "movieId",
+									"value": "{{youxiao}}"
+								},
+								{
+									"key": "key",
+									"value": "{{key}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "无效",
+			"item": [
+				{
+					"name": "查询影片信息 Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"//断言：判断实际值是否和预期值一样\r",
+									"//判断状态码\r",
+									"// pm.test(\"Status code is 200\", function () {\r",
+									"//     pm.response.to.have.status(200);\r",
+									"// });\r",
+									"\r",
+									"// 判断是否包含指定字符\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.not.include(\"功夫熊猫\");\r",
+									"    pm.expect(pm.response.text()).to.not.include(\"师傅\");\r",
+									"});\r",
+									"//只能用于结果为json格式的数据\r",
+									"//判断json字符串中某一个键的值是否等于预期结果\r",
+									"// pm.test(\"断言成功返回的内容\", function () {\r",
+									"//     var jsonData = pm.response.json();\r",
+									"//     pm.expect(jsonData['result'][0][\"language\"]).to.eql('英语');\r",
+									"//     pm.expect(jsonData.result[0].title).to.eql('功夫熊猫');\r",
+									"// });\r",
+									"//响应结果只能是字符串的时候使用\r",
+									"//用来判断结果是不是字符串类型\r",
+									"// pm.test(\"Body is correct\", function () {\r",
+									"//     pm.response.to.have.body(\"填预期结果，是完全匹配模式，必须和结果一模一样\");\r",
+									"// });\r",
+									"\r",
+									"// 判断响应头部域是否包含预期的头部字段\r",
+									"// pm.test(\"Content-Type is present\", function () {\r",
+									"//     pm.response.to.have.header(\"写需要结果带有的字段\");\r",
+									"// });\r",
+									"\r",
+									"// 判断响应时间是否小于预期结果，单位是ms\r",
+									"// pm.test(\"Response time is less than 200ms\", function () {\r",
+									"//     pm.expect(pm.response.responseTime).to.be.below('写预期响应时间');\r",
+									"// });\r",
+									"\r",
+									"// 判断响应状态码是否是预期结果中的一个\r",
+									"// pm.test(\"Successful POST request\", function () {\r",
+									"//     pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"// });\r",
+									"\r",
+									"// 判断状态码的解释是否符合预期结果\r",
+									"// pm.test(\"Status code name has string\", function () {\r",
+									"//     pm.response.to.have.status(\"OK\");\r",
+									"// });\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "Accept-Encoding",
+								"type": "text",
+								"value": "gzip, deflate, br"
+							},
+							{
+								"key": "Accept-Language",
+								"type": "text",
+								"value": "zh-CN,zh;q=0.9,en;q=0.8,en-US;q=0.7,zh-TW;q=0.6"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://v.juhe.cn/movie/query?movieId={{wuxiao}}&key={{key}}",
+							"protocol": "http",
+							"host": [
+								"v",
+								"juhe",
+								"cn"
+							],
+							"path": [
+								"movie",
+								"query"
+							],
+							"query": [
+								{
+									"key": "movieId",
+									"value": "{{wuxiao}}"
+								},
+								{
+									"key": "key",
+									"value": "{{key}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
